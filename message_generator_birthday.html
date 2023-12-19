@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message d'anniversaire d'un an d'ancienneté</title>
+</head>
+<body>
+
+<!-- Formulaire pour saisir le nom de l'employé -->
+<form id="anniversaireForm">
+    <label for="nomEmploye">Entrez le nom de l'employé :</label>
+    <input type="text" id="nomEmploye" required>
+    <button type="button" onclick="genererMessage()">Générer Message d'anniversaire</button>
+</form>
+
+<!-- Paragraphe pour afficher le message -->
+<p id="messageContainer"></p>
+
+<script>
+    function genererMessage() {
+        // Récupérer la valeur du champ de saisie
+        var nomEmploye = document.getElementById("nomEmploye").value;
+
+        // Vérifier si le nom n'est pas vide
+        if (nomEmploye !== "") {
+            // Générer le message d'anniversaire
+            var message = "Joyeux anniversaire d'un an d'ancienneté chez HetiCorp, " + nomEmploye + "! 🎉🎂";
+
+            // Afficher le message dans le paragraphe dédié
+            document.getElementById("messageContainer").textContent = message;
+        } else {
+            // Si le nom est vide, afficher un message d'erreur
+            alert("Veuillez entrer un nom valide.");
+        }
+    }
+</script>
+
+</body>
+</html>

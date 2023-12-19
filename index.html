@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcul de la date de première année d'ancienneté</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<form id="anniversaireForm">
+  <label for="nomEmploye">Entrez le nom de l'employé :</label>
+  <input type="text" id="nomEmploye" required>
+
+  <label for="birthdate">Entrez la date d'embauche :</label>
+  <input type="date" id="birthdate" required>
+
+  <button type="button" onclick="genererMessage()">Générer Message d'anniversaire</button>
+</form>
+
+<p id="messageContainer"></p>
+
+<script>
+  function genererMessage() {
+    // Récupérer la valeur du champ de saisie du nom de l'employé
+    var nomEmploye = document.getElementById("nomEmploye").value;
+
+    // Vérifier si le nom n'est pas vide
+    if (nomEmploye === "") {
+      alert("Veuillez entrer un nom valide.");
+      return;
+    }
+
+    // Récupérer la date d'embauche depuis l'input
+    var birthdateInput = document.getElementById('birthdate');
+    var birthdate = new Date(birthdateInput.value);
+
+    // Vérifier si la date est valide
+    if (isNaN(birthdate.getTime())) {
+      alert('Veuillez entrer une date valide.');
+      return;
+    }
+
+    // Ajouter 1 an à la date d'embauche
+    var nextYear = new Date(birthdate);
+    nextYear.setFullYear(nextYear.getFullYear() + 1);
+
+    // Générer le message d'anniversaire
+    var message = "Joyeux anniversaire d'un an d'ancienneté chez HetiCorp, " + nomEmploye + "! 🎉🎂 La première année a débuté le " + formatFrenchDate(birthdate) + " et nous sommes le " + formatFrenchDate(nextYear) + ".";
+
+    // Afficher le message dans le paragraphe dédié
+    document.getElementById("messageContainer").textContent = message;
+  }
+
+  function formatFrenchDate(date) {
+    // Formater la date au format jj/mm/aaaa
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    return (day < 10 ? '0' : '') + day + '/' + (month < 10 ? '0' : '') + month + '/' + year;
+  }
+</script>
+
+</body>
+</html>
